@@ -18,6 +18,7 @@ dependencies:
   injectable: ^1.5.3
   intl: ^0.17.0
   logger: any
+  pretty_dio_logger: ^1.1.1
   retrofit: '>=3.0.0 <4.0.0'
 
 dev_dependencies:
@@ -26,6 +27,7 @@ dev_dependencies:
   change_app_package_name: ^1.0.0
   flutter_test:
     sdk: flutter
+  injectable_generator: any
   json_serializable: ^6.2.0
   mocktail: ^0.3.0
   retrofit_generator: ^4.0.1

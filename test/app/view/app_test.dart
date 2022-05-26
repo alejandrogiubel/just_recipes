@@ -6,8 +6,8 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:just_recipes/app/app.dart';
 import 'package:just_recipes/counter/counter.dart';
+import 'package:just_recipes/src/app.dart';
 
 void main() {
   group('App', () {

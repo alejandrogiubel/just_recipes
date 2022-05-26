@@ -5,8 +5,8 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:just_recipes/app/app.dart';
 import 'package:just_recipes/bootstrap.dart';
+import 'package:just_recipes/src/app.dart';
 
 void main() {
   bootstrap(() => const App());
