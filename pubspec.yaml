@@ -8,18 +8,27 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  dio: ^4.0.6
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  get_it: ^7.2.0
+  injectable: ^1.5.3
   intl: ^0.17.0
+  logger: any
+  retrofit: '>=3.0.0 <4.0.0'
 
 dev_dependencies:
   bloc_test: ^9.0.3
+  build_runner: ^2.1.11
+  change_app_package_name: ^1.0.0
   flutter_test:
     sdk: flutter
+  json_serializable: ^6.2.0
   mocktail: ^0.3.0
+  retrofit_generator: ^4.0.1
   very_good_analysis: ^3.0.0
 
 flutter:
