@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:just_recipes/src/data/models/similar_recipe.dart';
 import 'package:just_recipes/src/data/resources/api.dart';
 
 void main() {
@@ -13,15 +14,64 @@ void main() {
   );
 
   group('Api Test', () {
-    test('Return something from api', () async {
+    test('Get Random Recipes', () async {
       final api = Api(
         dio,
       );
-      final response = await api.getRandomRecipe(
+      final response = await api.getRandomRecipes(
         tags: 'vegetarian,dessert',
-        number: '1',
+        number: 1,
       );
-      expect(response.isNotEmpty, true);
+      expect(response.recipes?.isNotEmpty, true);
+    });
+
+    test('Get Recipe', () async {
+      final api = Api(
+        dio,
+      );
+      final response = await api.getRecipe(
+        id: 716429,
+        includeNutrition: true,
+      );
+      expect(response.id, 716429);
+    });
+
+    test('Search Recipe', () async {
+      final api = Api(
+        dio,
+      );
+      final response = await api.searchRecipes(
+        query: 'pasta',
+      );
+      expect(
+        response.results
+            ?.any((element) => element.title!.toLowerCase().contains('pasta')),
+        true,
+      );
+    });
+
+    test('Similar Recipe', () async {
+      final api = Api(
+        dio,
+      );
+      final response = await api.getSimilarRecipe(
+        id: 716429,
+        number: 5,
+      );
+      expect(response.runtimeType, List<SimilarRecipe>);
+    });
+
+    test('Autocomplete Recipe Search', () async {
+      final api = Api(
+        dio,
+      );
+      final response = await api.autocompleteRecipeSearch(
+        query: 'pas',
+      );
+      expect(
+        response.any((element) => element.title!.toLowerCase().contains('pas')),
+        true,
+      );
     });
   });
 }

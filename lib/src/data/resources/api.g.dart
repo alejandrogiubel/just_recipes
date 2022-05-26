@@ -18,18 +18,92 @@ class _Api implements Api {
   String? baseUrl;
 
   @override
-  Future<String> getRandomRecipe({tags, number}) async {
+  Future<RandomRecipes> getRandomRecipes({tags, required number}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'tags': tags, r'number': number};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result = await _dio.fetch<String>(_setStreamType<String>(
-        Options(method: 'GET', headers: _headers, extra: _extra)
-            .compose(_dio.options, 'recipes/random',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<RandomRecipes>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/random',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = RandomRecipes.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Recipe> getRecipe({required id, required includeNutrition}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'includeNutrition': includeNutrition
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<Recipe>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/${id}/information',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Recipe.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<FoundRecipes> searchRecipes({required query}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<FoundRecipes>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/complexSearch',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = FoundRecipes.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<List<SimilarRecipe>> getSimilarRecipe(
+      {required id, required number}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'number': number};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<SimilarRecipe>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/${id}/similar',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => SimilarRecipe.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<AutocompleteSearch>> autocompleteRecipeSearch(
+      {required query}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'query': query};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<AutocompleteSearch>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/autocomplete',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) =>
+            AutocompleteSearch.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
