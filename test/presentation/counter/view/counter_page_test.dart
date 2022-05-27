@@ -12,7 +12,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:just_recipes/counter/counter.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../helpers/helpers.dart';
+import '../../../helpers/pump_app.dart';
 
 class MockCounterCubit extends MockCubit<int> implements CounterCubit {}
 

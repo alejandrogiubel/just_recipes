@@ -18,9 +18,13 @@ class _Api implements Api {
   String? baseUrl;
 
   @override
-  Future<RandomRecipes> getRandomRecipes({tags, required number}) async {
+  Future<RandomRecipes> getRandomRecipes(
+      {tags, required numberOfRecipes}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'tags': tags, r'number': number};
+    final queryParameters = <String, dynamic>{
+      r'tags': tags,
+      r'number': numberOfRecipes
+    };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -70,9 +74,9 @@ class _Api implements Api {
 
   @override
   Future<List<SimilarRecipe>> getSimilarRecipe(
-      {required id, required number}) async {
+      {required id, required numberOfRecipes}) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'number': number};
+    final queryParameters = <String, dynamic>{r'number': numberOfRecipes};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(

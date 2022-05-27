@@ -22,7 +22,7 @@ abstract class Api {
   @GET('recipes/random')
   Future<RandomRecipes> getRandomRecipes({
     @Query('tags') required String? tags,
-    @Query('number') required int number,
+    @Query('number') required int numberOfRecipes,
   });
 
   @GET('recipes/{id}/information')
@@ -39,7 +39,7 @@ abstract class Api {
   @GET('recipes/{id}/similar')
   Future<List<SimilarRecipe>> getSimilarRecipe({
     @Path('id') required int id,
-    @Query('number') required int number,
+    @Query('number') required int numberOfRecipes,
   });
 
   @GET('recipes/autocomplete')

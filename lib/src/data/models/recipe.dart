@@ -179,6 +179,7 @@ class RandomRecipes {
       : recipes = (json['recipes'] as List?)
             ?.map((dynamic e) => Recipe.fromJson(e as Map<String, dynamic>))
             .toList();
+
   final List<Recipe>? recipes;
 
   Map<String, dynamic> toJson() =>

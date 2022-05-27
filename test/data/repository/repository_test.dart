@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:just_recipes/src/data/models/similar_recipe.dart';
+import 'package:just_recipes/src/data/repository/recipe_repository.dart';
 import 'package:just_recipes/src/data/resources/api.dart';
 
 void main() {
@@ -13,34 +14,32 @@ void main() {
     ),
   );
 
+  final api = Api(
+    dio,
+  );
+
+  final repository = RecipeRepository(
+    api: api,
+  );
+
   group('Api Test', () {
     test('Get Random Recipes', () async {
-      final api = Api(
-        dio,
-      );
-      final response = await api.getRandomRecipes(
+      final response = await repository.getRandomRecipes(
         tags: 'vegetarian,dessert',
-        number: 1,
+        numberOfRecipes: 1,
       );
       expect(response.recipes?.isNotEmpty, true);
     });
 
     test('Get Recipe', () async {
-      final api = Api(
-        dio,
-      );
-      final response = await api.getRecipe(
+      final response = await repository.getRecipe(
         id: 716429,
-        includeNutrition: true,
       );
       expect(response.id, 716429);
     });
 
     test('Search Recipe', () async {
-      final api = Api(
-        dio,
-      );
-      final response = await api.searchRecipes(
+      final response = await repository.searchRecipes(
         query: 'pasta',
       );
       expect(
@@ -51,21 +50,15 @@ void main() {
     });
 
     test('Similar Recipe', () async {
-      final api = Api(
-        dio,
-      );
-      final response = await api.getSimilarRecipe(
+      final response = await repository.getSimilarRecipe(
         id: 716429,
-        number: 5,
+        numberOfRecipes: 5,
       );
       expect(response.runtimeType, List<SimilarRecipe>);
     });
 
     test('Autocomplete Recipe Search', () async {
-      final api = Api(
-        dio,
-      );
-      final response = await api.autocompleteRecipeSearch(
+      final response = await repository.autocompleteRecipeSearch(
         query: 'pas',
       );
       expect(
