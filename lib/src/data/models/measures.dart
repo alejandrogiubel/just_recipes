@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:just_recipes/src/data/models/metric.dart';
 import 'package:just_recipes/src/data/models/us.dart';
 
-class Measures {
-  Measures({
+class Measures extends Equatable {
+  const Measures({
     this.metric,
     this.us,
   });
@@ -18,4 +19,7 @@ class Measures {
 
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'metric': metric?.toJson(), 'us': us?.toJson()};
+
+  @override
+  List<Object?> get props => [metric, us];
 }

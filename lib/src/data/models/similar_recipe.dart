@@ -1,5 +1,7 @@
-class SimilarRecipe {
-  SimilarRecipe({
+import 'package:equatable/equatable.dart';
+
+class SimilarRecipe extends Equatable {
+  const SimilarRecipe({
     this.id,
     this.title,
     this.imageType,
@@ -30,4 +32,8 @@ class SimilarRecipe {
         'servings': servings,
         'sourceUrl': sourceUrl
       };
+
+  @override
+  List<Object?> get props =>
+      [id, title, imageType, readyInMinutes, servings, sourceUrl];
 }

@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:just_recipes/src/data/models/extended_ingredients.dart';
 import 'package:just_recipes/src/data/models/wine_pairing.dart';
 
-class Recipe {
-  Recipe({
+class Recipe extends Equatable {
+  const Recipe({
     this.id,
     this.title,
     this.image,
@@ -55,7 +56,7 @@ class Recipe {
         spoonacularSourceUrl = json['spoonacularSourceUrl'] as String?,
         aggregateLikes = json['aggregateLikes'] as int?,
         healthScore = json['healthScore'] as int?,
-        spoonacularScore = json['spoonacularScore'] as int?,
+        spoonacularScore = json['spoonacularScore'] as double?,
         pricePerServing = json['pricePerServing'] as double?,
         analyzedInstructions = json['analyzedInstructions'] as List?,
         cheap = json['cheap'] as bool?,
@@ -102,7 +103,7 @@ class Recipe {
   final String? spoonacularSourceUrl;
   final int? aggregateLikes;
   final int? healthScore;
-  final int? spoonacularScore;
+  final double? spoonacularScore;
   final double? pricePerServing;
   final List<dynamic>? analyzedInstructions;
   final bool? cheap;
@@ -168,10 +169,13 @@ class Recipe {
         'summary': summary,
         'winePairing': winePairing?.toJson()
       };
+
+  @override
+  List<Object?> get props => [id];
 }
 
-class RandomRecipes {
-  RandomRecipes({
+class RandomRecipes extends Equatable {
+  const RandomRecipes({
     this.recipes,
   });
 
@@ -184,4 +188,7 @@ class RandomRecipes {
 
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'recipes': recipes?.map((e) => e.toJson()).toList()};
+
+  @override
+  List<Object?> get props => [recipes];
 }

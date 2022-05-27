@@ -1,7 +1,8 @@
-import 'package:just_recipes/src/data/models/mesures.dart';
+import 'package:equatable/equatable.dart';
+import 'package:just_recipes/src/data/models/measures.dart';
 
-class ExtendedIngredients {
-  ExtendedIngredients({
+class ExtendedIngredients extends Equatable {
+  const ExtendedIngredients({
     this.aisle,
     this.amount,
     this.consitency,
@@ -54,4 +55,19 @@ class ExtendedIngredients {
         'originalName': originalName,
         'unit': unit
       };
+
+  @override
+  List<Object?> get props => [
+        aisle,
+        amount,
+        consitency,
+        id,
+        image,
+        measures,
+        meta,
+        name,
+        original,
+        originalName,
+        unit
+      ];
 }

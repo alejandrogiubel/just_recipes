@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:just_recipes/src/data/models/product_matches.dart';
 
-class WinePairing {
-  WinePairing({
+class WinePairing extends Equatable {
+  const WinePairing({
     this.pairedWines,
     this.pairingText,
     this.productMatches,
@@ -24,4 +25,11 @@ class WinePairing {
         'pairingText': pairingText,
         'productMatches': productMatches?.map((e) => e.toJson()).toList()
       };
+
+  @override
+  List<Object?> get props => [
+        pairedWines,
+        pairingText,
+        productMatches,
+      ];
 }

@@ -1,5 +1,7 @@
-class Metric {
-  Metric({
+import 'package:equatable/equatable.dart';
+
+class Metric extends Equatable {
+  const Metric({
     this.amount,
     this.unitLong,
     this.unitShort,
@@ -18,4 +20,7 @@ class Metric {
         'unitLong': unitLong,
         'unitShort': unitShort
       };
+
+  @override
+  List<Object?> get props => [amount, unitLong, unitShort];
 }

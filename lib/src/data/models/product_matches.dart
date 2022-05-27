@@ -1,5 +1,7 @@
-class ProductMatches {
-  ProductMatches({
+import 'package:equatable/equatable.dart';
+
+class ProductMatches extends Equatable {
+  const ProductMatches({
     this.id,
     this.title,
     this.description,
@@ -17,7 +19,7 @@ class ProductMatches {
         price = json['price'] as String?,
         imageUrl = json['imageUrl'] as String?,
         averageRating = json['averageRating'] as double?,
-        ratingCount = json['ratingCount'] as int?,
+        ratingCount = json['ratingCount'] as double?,
         score = json['score'] as double?,
         link = json['link'] as String?;
   final int? id;
@@ -26,7 +28,7 @@ class ProductMatches {
   final String? price;
   final String? imageUrl;
   final double? averageRating;
-  final int? ratingCount;
+  final double? ratingCount;
   final double? score;
   final String? link;
 
@@ -41,4 +43,17 @@ class ProductMatches {
         'score': score,
         'link': link
       };
+
+  @override
+  List<Object?> get props => [
+        id,
+        title,
+        description,
+        price,
+        imageUrl,
+        averageRating,
+        ratingCount,
+        score,
+        link
+      ];
 }

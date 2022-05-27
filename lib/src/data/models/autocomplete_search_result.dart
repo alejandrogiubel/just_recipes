@@ -1,5 +1,7 @@
-class AutocompleteSearch {
-  AutocompleteSearch({
+import 'package:equatable/equatable.dart';
+
+class AutocompleteSearch extends Equatable {
+  const AutocompleteSearch({
     this.id,
     this.title,
     this.imageType,
@@ -15,4 +17,7 @@ class AutocompleteSearch {
 
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'id': id, 'title': title, 'imageType': imageType};
+
+  @override
+  List<Object?> get props => [id, title, imageType];
 }

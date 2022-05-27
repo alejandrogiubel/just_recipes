@@ -1,5 +1,7 @@
-class FoundRecipes {
-  FoundRecipes({
+import 'package:equatable/equatable.dart';
+
+class FoundRecipes extends Equatable {
+  const FoundRecipes({
     this.offset,
     this.number,
     this.results,
@@ -24,10 +26,13 @@ class FoundRecipes {
         'results': results?.map((e) => e.toJson()).toList(),
         'totalResults': totalResults
       };
+
+  @override
+  List<Object?> get props => [offset, number, results, totalResults];
 }
 
-class Results {
-  Results({
+class Results extends Equatable {
+  const Results({
     this.id,
     this.title,
     this.calories,
@@ -66,4 +71,8 @@ class Results {
         'imageType': imageType,
         'protein': protein
       };
+
+  @override
+  List<Object?> get props =>
+      [id, title, calories, carbs, fat, image, imageType, protein];
 }

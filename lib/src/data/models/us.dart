@@ -1,5 +1,7 @@
-class Us {
-  Us({
+import 'package:equatable/equatable.dart';
+
+class Us extends Equatable {
+  const Us({
     this.amount,
     this.unitLong,
     this.unitShort,
@@ -18,4 +20,7 @@ class Us {
         'unitLong': unitLong,
         'unitShort': unitShort
       };
+
+  @override
+  List<Object?> get props => [amount, unitLong, unitShort];
 }
