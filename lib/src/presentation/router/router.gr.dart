@@ -34,7 +34,9 @@ class AppRouter extends _i7.RootStackRouter {
       final args = routeData.argsAs<RecipeDetailsRouteArgs>();
       return _i7.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i2.RecipeDetailsPage(recipeId: args.recipeId, key: args.key));
+          child: _i7.WrappedRoute(
+              child: _i2.RecipeDetailsPage(
+                  recipeId: args.recipeId, key: args.key)));
     },
     HomeRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(

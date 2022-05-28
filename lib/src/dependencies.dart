@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_recipes/src/dependencies.config.dart';
 import 'package:just_recipes/src/presentation/utils/const.dart';
@@ -22,4 +23,9 @@ abstract class RegisterModule {
 
   @Named('baseUrl')
   String get baseUrl => apiBaseUrl;
+
+  @lazySingleton
+  @Named('my_recipes_box')
+  @preResolve
+  Future<Box<int>> get myRecipesBox => Hive.openBox('my_recipes_box');
 }
