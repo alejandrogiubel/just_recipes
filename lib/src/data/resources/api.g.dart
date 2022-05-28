@@ -9,9 +9,7 @@ part of 'api.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps
 
 class _Api implements Api {
-  _Api(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://api.spoonacular.com/';
-  }
+  _Api(this._dio, {this.baseUrl});
 
   final Dio _dio;
 

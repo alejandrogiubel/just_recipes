@@ -12,11 +12,11 @@ class RecommendedRecipeCubit extends Cubit<RecommendedRecipeState> {
       : super(RecommendedRecipeInitialState());
   final RecipeRepository _recipeRepository;
 
-  Future<void> getRecipeOfTheDay() async {
+  Future<void> getRecommendedRecipe() async {
     emit(RecommendedRecipeLoadingState());
     try {
       final recipe = await _recipeRepository.getRandomRecipes(
-        tags: 'vegan',
+        tags: '',
         numberOfRecipes: 1,
       );
       emit(RecommendedRecipeLoadedState(recipe));

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_recipes/src/dependencies.config.dart';
+import 'package:just_recipes/src/presentation/utils/const.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @InjectableInit(preferRelativeImports: false)
@@ -18,4 +19,7 @@ abstract class RegisterModule {
           },
         ),
       )..interceptors.add(PrettyDioLogger());
+
+  @Named('baseUrl')
+  String get baseUrl => apiBaseUrl;
 }

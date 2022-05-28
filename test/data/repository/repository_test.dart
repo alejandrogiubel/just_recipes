@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:just_recipes/src/data/models/similar_recipe.dart';
 import 'package:just_recipes/src/data/repository/recipe_repository.dart';
 import 'package:just_recipes/src/data/resources/api.dart';
+import 'package:just_recipes/src/presentation/utils/const.dart';
 
 void main() {
   final dio = Dio(
@@ -16,6 +17,7 @@ void main() {
 
   final api = Api(
     dio,
+    baseUrl: apiBaseUrl,
   );
 
   final repository = RecipeRepository(

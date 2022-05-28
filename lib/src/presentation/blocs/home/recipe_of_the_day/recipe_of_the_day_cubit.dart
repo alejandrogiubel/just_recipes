@@ -16,7 +16,7 @@ class RecipeOfTheDayCubit extends Cubit<RecipeOfTheDayState> {
     emit(RecipeOfTheDayLoadingState());
     try {
       final recipe = await _recipeRepository.getRandomRecipes(
-        tags: 'vegan',
+        tags: '',
         numberOfRecipes: 1,
       );
       emit(RecipeOfTheDayLoadedState(recipe));

@@ -8,15 +8,13 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api.g.dart';
 
-@RestApi(
-  baseUrl: 'https://api.spoonacular.com/',
-)
+@RestApi()
 @lazySingleton
 abstract class Api {
   @factoryMethod
   factory Api(
     Dio dio, {
-    String baseUrl,
+    @Named('baseUrl') required String baseUrl,
   }) = _Api;
 
   @GET('recipes/random')
