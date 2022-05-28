@@ -5,9 +5,13 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:flutter/material.dart';
 import 'package:just_recipes/bootstrap.dart';
 import 'package:just_recipes/src/app.dart';
+import 'package:just_recipes/src/dependencies.dart';
 
-void main() {
-  bootstrap(() => const App());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  await bootstrap(App.new);
 }
