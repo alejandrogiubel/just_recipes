@@ -25,6 +25,14 @@ class RecipeRepository {
     return api.getRecipe(id: id, includeNutrition: includeNutrition);
   }
 
+  Future<List<Recipe>> getRecipesBulk({
+    /// Comma separated list of recipe ids
+    required String ids,
+    bool includeNutrition = true,
+  }) async {
+    return api.getRecipesBulk(ids: ids, includeNutrition: true);
+  }
+
   Future<FoundRecipes> searchRecipes({
     required String query,
   }) async {

@@ -45,7 +45,8 @@ class AppRouter extends _i7.RootStackRouter {
     },
     MyRecipesRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.MyRecipesPage());
+          routeData: routeData,
+          child: _i7.WrappedRoute(child: const _i4.MyRecipesPage()));
     },
     CookNowRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(

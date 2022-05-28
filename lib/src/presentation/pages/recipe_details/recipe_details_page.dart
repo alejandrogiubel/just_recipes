@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -78,11 +79,9 @@ class RecipeDetailsPage extends StatelessWidget with AutoRouteWrapper {
             if (recipe.image != null)
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(
-                  recipe.image!,
-                  errorBuilder: (context, error, stackTrace) {
-                    return const FailWidget(error: 'Image not found');
-                  },
+                child: CachedNetworkImage(
+                  imageUrl: recipe.image!,
+                  fit: BoxFit.cover,
                 ),
               ).withDominoAnimation,
             Padding(

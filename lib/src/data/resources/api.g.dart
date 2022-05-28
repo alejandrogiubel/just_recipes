@@ -55,6 +55,28 @@ class _Api implements Api {
   }
 
   @override
+  Future<List<Recipe>> getRecipesBulk(
+      {required ids, required includeNutrition}) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'ids': ids,
+      r'includeNutrition': includeNutrition
+    };
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<List<Recipe>>(
+            Options(method: 'GET', headers: _headers, extra: _extra)
+                .compose(_dio.options, 'recipes/informationBulk',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => Recipe.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
   Future<FoundRecipes> searchRecipes({required query}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'query': query};

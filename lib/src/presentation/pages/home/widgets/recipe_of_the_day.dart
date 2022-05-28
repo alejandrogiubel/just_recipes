@@ -1,8 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_recipes/src/presentation/style/themes.dart';
 import 'package:just_recipes/src/presentation/utils/extensions/widget_extension.dart';
-import 'package:just_recipes/src/presentation/widgets/fail_widget.dart';
 
 class RecipeOfTheDay extends StatelessWidget {
   const RecipeOfTheDay({
@@ -86,11 +86,8 @@ class RecipeOfTheDay extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 20),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          imageUrl!,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const FailWidget(error: 'Image not found');
-                          },
+                        child: CachedNetworkImage(
+                          imageUrl: imageUrl!,
                         ),
                       ).withDominoAnimation,
                     ),

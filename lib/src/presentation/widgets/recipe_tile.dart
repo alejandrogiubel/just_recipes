@@ -1,7 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_recipes/src/presentation/style/themes.dart';
-import 'package:just_recipes/src/presentation/widgets/fail_widget.dart';
 
 class RecipeTile extends StatelessWidget {
   const RecipeTile({
@@ -45,11 +45,8 @@ class RecipeTile extends StatelessWidget {
                 if (imageUrl != null)
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      imageUrl!,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const FailWidget(error: 'Image not found');
-                      },
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl!,
                     ),
                   ),
                 const SizedBox(height: 20),
@@ -67,22 +64,19 @@ class RecipeTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-                Row(
+                Wrap(
+                  runSpacing: 15,
+                  spacing: 15,
                   children: [
-                    const FaIcon(FontAwesomeIcons.clock, size: 18),
-                    const SizedBox(width: 10),
-                    Text(
+                    labeledIcon(
+                      context,
+                      FontAwesomeIcons.clock,
                       '$timeInMinutes min',
-                      style: textTheme.subtitle2,
                     ),
-                    const SizedBox(width: 30),
-                    const FaIcon(FontAwesomeIcons.plateWheat, size: 18),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
+                    labeledIcon(
+                      context,
+                      FontAwesomeIcons.plateWheat,
                       '$portions portions',
-                      style: textTheme.subtitle2,
                     ),
                   ],
                 ),
@@ -91,6 +85,20 @@ class RecipeTile extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget labeledIcon(BuildContext context, IconData icon, String label) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FaIcon(icon, size: 18),
+        const SizedBox(width: 5),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ],
     );
   }
 }

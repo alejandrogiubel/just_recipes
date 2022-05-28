@@ -29,6 +29,13 @@ abstract class Api {
     @Query('includeNutrition') required bool includeNutrition,
   });
 
+  @GET('recipes/informationBulk')
+  Future<List<Recipe>> getRecipesBulk({
+    ///Ids of the recipes to get separated by commas
+    @Query('ids') required String ids,
+    @Query('includeNutrition') required bool includeNutrition,
+  });
+
   @GET('recipes/complexSearch')
   Future<FoundRecipes> searchRecipes({
     @Query('query') required String query,
