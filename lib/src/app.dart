@@ -5,12 +5,11 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:just_recipes/l10n/l10n.dart';
 import 'package:just_recipes/src/presentation/router/router.gr.dart';
+import 'package:just_recipes/src/presentation/style/themes.dart';
 
 class App extends StatelessWidget {
   App({super.key});
@@ -20,15 +19,8 @@ class App extends StatelessWidget {
     return MaterialApp.router(
       routerDelegate: _appRouter.delegate(),
       routeInformationParser: _appRouter.defaultRouteParser(),
-      theme: FlexColorScheme.light(
-        scheme: FlexScheme.flutterDash,
-        appBarStyle: FlexAppBarStyle.material,
-        textTheme: GoogleFonts.montserratTextTheme(),
-      ).toTheme,
-      darkTheme: FlexColorScheme.dark(
-        scheme: FlexScheme.flutterDash,
-        textTheme: GoogleFonts.montserratTextTheme(),
-      ).toTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

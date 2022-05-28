@@ -16,13 +16,14 @@ class Root extends StatelessWidget {
         CookNowRoute(),
         SettingsRoute(),
       ],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       bottomNavigationBuilder: (_, tabsRouter) {
         return FloatingNavbar(
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           padding: const EdgeInsets.all(5),
           backgroundColor: Theme.of(context).primaryColor.withOpacity(0.2),
-          selectedItemColor: Colors.white70,
+          selectedItemColor: Colors.white,
           selectedBackgroundColor:
               Theme.of(context).primaryColor.withOpacity(0.5),
           unselectedItemColor: Theme.of(context).primaryColor,
