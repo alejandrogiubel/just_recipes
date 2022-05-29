@@ -10,8 +10,9 @@ part 'my_recipes_state.dart';
 @lazySingleton
 class MyRecipesCubit extends Cubit<MyRecipesState> {
   MyRecipesCubit(
-      this._recipeRepository, @Named('my_recipes_box') this._myRecipeBox)
-      : super(MyRecipesInitialState());
+    this._recipeRepository,
+    @Named('my_recipes_box') this._myRecipeBox,
+  ) : super(MyRecipesInitialState());
   final RecipeRepository _recipeRepository;
   final Box<int> _myRecipeBox;
 

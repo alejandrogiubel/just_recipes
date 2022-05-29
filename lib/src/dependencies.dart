@@ -28,4 +28,14 @@ abstract class RegisterModule {
   @Named('my_recipes_box')
   @preResolve
   Future<Box<int>> get myRecipesBox => Hive.openBox('my_recipes_box');
+
+  @lazySingleton
+  @Named('dark_mode_box')
+  @preResolve
+  Future<Box<bool>> get darkModeBox => Hive.openBox('dark_mode_box');
+
+  @lazySingleton
+  @Named('theme_scheme_box')
+  @preResolve
+  Future<Box<String>> get themeSchemeBox => Hive.openBox('theme_scheme_box');
 }

@@ -6,8 +6,9 @@ import 'package:just_recipes/src/presentation/blocs/my_recipes/my_recipes_cubit.
 @injectable
 class SaveRecipeCubit extends Cubit<bool> {
   SaveRecipeCubit(
-      this._myRecipesCubit, @Named('my_recipes_box') this._myRecipeBox)
-      : super(false);
+    this._myRecipesCubit,
+    @Named('my_recipes_box') this._myRecipeBox,
+  ) : super(false);
   final MyRecipesCubit _myRecipesCubit;
   final Box<int> _myRecipeBox;
 
