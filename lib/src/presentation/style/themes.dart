@@ -19,5 +19,5 @@ final darkTheme = FlexColorScheme.dark(
     ).textTheme,
   ),
   scheme: FlexScheme.damask,
-  scaffoldBackground: const Color(0xFF121214),
+  scaffoldBackground: const Color(0xFF252527),
 ).toTheme;

@@ -326,6 +326,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_neumorphic:
+    dependency: "direct main"
+    description:
+      name: flutter_neumorphic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.0"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -520,6 +527,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  neon_circular_timer:
+    dependency: "direct main"
+    description:
+      name: neon_circular_timer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   nested:
     dependency: transitive
     description:
@@ -847,13 +861,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  transparent_image:
-    dependency: "direct main"
-    description:
-      name: transparent_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   tuple:
     dependency: transitive
     description:
