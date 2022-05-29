@@ -36,39 +36,46 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            BlocBuilder<RecipeOfTheDayCubit, RecipeOfTheDayState>(
-              builder: (context, state) {
-                if (state is RecipeOfTheDayLoadedState) {
-                  return getHeader(context, state.recipe);
-                } else if (state is RecipeOfTheDayLoadingState) {
-                  return const Center(child: LoadingWidget());
-                } else {
-                  state as RecipeOfTheDayErrorState;
-                  return Center(child: FailWidget(error: state.message));
-                }
-              },
-            ),
-            const SizedBox(height: 40),
-            BlocBuilder<RecommendedRecipeCubit, RecommendedRecipeState>(
-              builder: (context, state) {
-                if (state is RecommendedRecipeLoadedState) {
-                  return getRecommended(context, state.recipe);
-                } else if (state is RecommendedRecipeLoadingState) {
-                  return const Center(child: LoadingWidget());
-                } else {
-                  state as RecommendedRecipeErrorState;
-                  return Center(
-                    child: FailWidget(
-                      error: state.message,
-                    ),
-                  );
-                }
-              },
-            )
-          ],
+      body: RefreshIndicator(
+        onRefresh: () {
+          context.read<RecipeOfTheDayCubit>().getRecipeOfTheDay();
+          context.read<RecommendedRecipeCubit>().getRecommendedRecipe();
+          return Future.value();
+        },
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              BlocBuilder<RecipeOfTheDayCubit, RecipeOfTheDayState>(
+                builder: (context, state) {
+                  if (state is RecipeOfTheDayLoadedState) {
+                    return getHeader(context, state.recipe);
+                  } else if (state is RecipeOfTheDayLoadingState) {
+                    return const Center(child: LoadingWidget());
+                  } else {
+                    state as RecipeOfTheDayErrorState;
+                    return Center(child: FailWidget(error: state.message));
+                  }
+                },
+              ),
+              const SizedBox(height: 40),
+              BlocBuilder<RecommendedRecipeCubit, RecommendedRecipeState>(
+                builder: (context, state) {
+                  if (state is RecommendedRecipeLoadedState) {
+                    return getRecommended(context, state.recipe);
+                  } else if (state is RecommendedRecipeLoadingState) {
+                    return const Center(child: LoadingWidget());
+                  } else {
+                    state as RecommendedRecipeErrorState;
+                    return Center(
+                      child: FailWidget(
+                        error: state.message,
+                      ),
+                    );
+                  }
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
