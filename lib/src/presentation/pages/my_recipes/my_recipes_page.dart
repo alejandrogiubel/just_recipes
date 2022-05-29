@@ -61,7 +61,10 @@ class MyRecipesPage extends StatelessWidget with AutoRouteWrapper {
               }
             } else {
               state as MyRecipesErrorState;
-              return Center(child: FailWidget(error: state.message));
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Center(child: FailWidget(error: state.message)),
+              );
             }
           },
         ),

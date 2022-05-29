@@ -20,7 +20,7 @@ class MyRecipesCubit extends Cubit<MyRecipesState> {
     try {
       final ids = StringBuffer();
       for (final element in _myRecipeBox.values) {
-        ids.write('$ids,$element');
+        ids.write(',$element');
       }
       final recipes =
           await _recipeRepository.getRecipesBulk(ids: ids.toString());
