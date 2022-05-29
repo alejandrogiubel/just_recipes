@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -22,50 +23,54 @@ class RecipeDetailsPage extends StatelessWidget with AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetRecipeCubit, GetRecipeState>(
-      builder: (context, state) {
-        if (state is GetRecipeLoadingState) {
-          return const Scaffold(body: Center(child: LoadingWidget()));
-        } else if (state is GetRecipeLoadedState) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(state.recipe.sourceName ?? 'Recipe'),
-              actions: [
-                BlocBuilder<SaveRecipeCubit, bool>(
-                  builder: (context, state) {
-                    if (state) {
-                      return IconButton(
-                        splashRadius: 20,
-                        icon: const Icon(
-                          FontAwesomeIcons.heart,
-                          color: Colors.red,
-                        ),
-                        onPressed: () {
-                          context
-                              .read<SaveRecipeCubit>()
-                              .unSaveRecipe(recipeId);
-                        },
-                      );
-                    } else {
-                      return IconButton(
-                        splashRadius: 20,
-                        icon: const Icon(FontAwesomeIcons.heart),
-                        onPressed: () {
-                          context.read<SaveRecipeCubit>().saveRecipe(recipeId);
-                        },
-                      );
-                    }
-                  },
-                ),
-              ],
-            ),
-            body: getBody(context, state.recipe),
-          );
-        } else {
-          state as GetRecipeErrorState;
-          return FailWidget(error: state.error);
-        }
-      },
+    return ThemeSwitchingArea(
+      child: BlocBuilder<GetRecipeCubit, GetRecipeState>(
+        builder: (context, state) {
+          if (state is GetRecipeLoadingState) {
+            return const Scaffold(body: Center(child: LoadingWidget()));
+          } else if (state is GetRecipeLoadedState) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(state.recipe.sourceName ?? 'Recipe'),
+                actions: [
+                  BlocBuilder<SaveRecipeCubit, bool>(
+                    builder: (context, state) {
+                      if (state) {
+                        return IconButton(
+                          splashRadius: 20,
+                          icon: const Icon(
+                            FontAwesomeIcons.heart,
+                            color: Colors.red,
+                          ),
+                          onPressed: () {
+                            context
+                                .read<SaveRecipeCubit>()
+                                .unSaveRecipe(recipeId);
+                          },
+                        );
+                      } else {
+                        return IconButton(
+                          splashRadius: 20,
+                          icon: const Icon(FontAwesomeIcons.heart),
+                          onPressed: () {
+                            context
+                                .read<SaveRecipeCubit>()
+                                .saveRecipe(recipeId);
+                          },
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+              body: getBody(context, state.recipe),
+            );
+          } else {
+            state as GetRecipeErrorState;
+            return FailWidget(error: state.error);
+          }
+        },
+      ),
     );
   }
 

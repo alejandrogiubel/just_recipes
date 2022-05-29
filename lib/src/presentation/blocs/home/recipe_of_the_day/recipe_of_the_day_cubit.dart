@@ -21,7 +21,7 @@ class RecipeOfTheDayCubit extends Cubit<RecipeOfTheDayState> {
       );
       emit(RecipeOfTheDayLoadedState(recipe));
     } catch (e) {
-      emit(RecipeOfTheDayErrorState(e.toString()));
+      emit(RecipeOfTheDayErrorState('Connection error'));
     }
   }
 }

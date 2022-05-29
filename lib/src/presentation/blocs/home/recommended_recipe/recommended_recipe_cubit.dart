@@ -21,7 +21,7 @@ class RecommendedRecipeCubit extends Cubit<RecommendedRecipeState> {
       );
       emit(RecommendedRecipeLoadedState(recipe));
     } catch (e) {
-      emit(RecommendedRecipeErrorState(e.toString()));
+      emit(RecommendedRecipeErrorState('Connection error'));
     }
   }
 }

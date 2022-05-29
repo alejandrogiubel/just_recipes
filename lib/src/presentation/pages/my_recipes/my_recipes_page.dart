@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get_it/get_it.dart';
 import 'package:just_recipes/src/presentation/blocs/my_recipes/my_recipes_cubit.dart';
 import 'package:just_recipes/src/presentation/router/router.gr.dart';
+import 'package:just_recipes/src/presentation/utils/extensions/widget_extension.dart';
 import 'package:just_recipes/src/presentation/widgets/fail_widget.dart';
 import 'package:just_recipes/src/presentation/widgets/loading_widget.dart';
 import 'package:just_recipes/src/presentation/widgets/recipe_tile.dart';
@@ -15,48 +16,56 @@ class MyRecipesPage extends StatelessWidget with AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     context.read<MyRecipesCubit>().getMyRecipes();
-    return BlocBuilder<MyRecipesCubit, MyRecipesState>(
-      builder: (context, state) {
-        if (state is MyRecipesLoadingState) {
-          return const Center(child: LoadingWidget());
-        } else if (state is MyRecipesLoadedState) {
-          if (state.recipes.isEmpty) {
-            return Center(
-              child: Text(
-                'No recipes found',
-                style: Theme.of(context).textTheme.subtitle2,
-              ),
-            );
-          } else {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: StaggeredGrid.count(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 12,
-                  children: state.recipes
-                      .map(
-                        (e) => RecipeTile(
-                          title: e.sourceName ?? '',
-                          timeInMinutes: e.readyInMinutes ?? 0,
-                          portions: e.servings ?? 0,
-                          imageUrl: e.image ?? '',
-                          subtitle: e.title ?? '',
-                          onTap: () => context.router
-                              .push(RecipeDetailsRoute(recipeId: e.id!)),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('My Recipes'),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () => context.read<MyRecipesCubit>().getMyRecipes(),
+        child: BlocBuilder<MyRecipesCubit, MyRecipesState>(
+          builder: (context, state) {
+            if (state is MyRecipesLoadingState) {
+              return const Center(child: LoadingWidget());
+            } else if (state is MyRecipesLoadedState) {
+              if (state.recipes.isEmpty) {
+                return Center(
+                  child: Text(
+                    'No recipes found',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                );
+              } else {
+                return MasonryGridView.extent(
+                  maxCrossAxisExtent: 300,
+                  mainAxisSpacing: 15,
+                  crossAxisSpacing: 15,
+                  padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                  itemCount: state.recipes.length,
+                  itemBuilder: (context, index) {
+                    return RecipeTile(
+                      title: state.recipes[index].sourceName ?? '',
+                      timeInMinutes: state.recipes[index].readyInMinutes ?? 0,
+                      portions: state.recipes[index].servings ?? 0,
+                      imageUrl: state.recipes[index].image ?? '',
+                      subtitle: state.recipes[index].title ?? '',
+                      onTap: () => context.router.push(
+                        RecipeDetailsRoute(
+                          recipeId: state.recipes[index].id!,
                         ),
-                      )
-                      .toList(),
-                ),
-              ),
-            );
-          }
-        } else {
-          state as MyRecipesErrorState;
-          return FailWidget(error: state.message);
-        }
-      },
+                      ),
+                    ).withDominoDelayedRevealAnimation(
+                      Duration(milliseconds: index * 100),
+                    );
+                  },
+                );
+              }
+            } else {
+              state as MyRecipesErrorState;
+              return Center(child: FailWidget(error: state.message));
+            }
+          },
+        ),
+      ),
     );
   }
 

@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
                   return const Center(child: LoadingWidget());
                 } else {
                   state as RecipeOfTheDayErrorState;
-                  return FailWidget(error: state.message);
+                  return Center(child: FailWidget(error: state.message));
                 }
               },
             ),
@@ -60,8 +60,10 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
                   return const Center(child: LoadingWidget());
                 } else {
                   state as RecommendedRecipeErrorState;
-                  return FailWidget(
-                    error: state.message,
+                  return Center(
+                    child: FailWidget(
+                      error: state.message,
+                    ),
                   );
                 }
               },

@@ -5,6 +5,7 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:just_recipes/l10n/l10n.dart';
@@ -16,16 +17,19 @@ class App extends StatelessWidget {
   final _appRouter = AppRouter();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-      ],
-      supportedLocales: AppLocalizations.supportedLocales,
+    return ThemeProvider(
+      initTheme: lightTheme,
+      child: MaterialApp.router(
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+        ],
+        supportedLocales: AppLocalizations.supportedLocales,
+      ),
     );
   }
 }

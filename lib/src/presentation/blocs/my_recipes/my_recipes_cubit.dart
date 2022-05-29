@@ -26,7 +26,7 @@ class MyRecipesCubit extends Cubit<MyRecipesState> {
           await _recipeRepository.getRecipesBulk(ids: ids.toString());
       emit(MyRecipesLoadedState(recipes));
     } catch (e) {
-      emit(MyRecipesErrorState(e.toString()));
+      emit(MyRecipesErrorState('Connection error'));
     }
   }
 }
