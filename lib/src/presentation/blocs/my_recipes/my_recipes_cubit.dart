@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 
 part 'my_recipes_state.dart';
 
-@injectable
+@lazySingleton
 class MyRecipesCubit extends Cubit<MyRecipesState> {
   MyRecipesCubit(
       this._recipeRepository, @Named('my_recipes_box') this._myRecipeBox)

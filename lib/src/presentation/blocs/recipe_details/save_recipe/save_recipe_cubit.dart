@@ -1,23 +1,29 @@
 import 'package:bloc/bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
+import 'package:just_recipes/src/presentation/blocs/my_recipes/my_recipes_cubit.dart';
 
 @injectable
 class SaveRecipeCubit extends Cubit<bool> {
-  SaveRecipeCubit(@Named('my_recipes_box') this.myRecipeBox) : super(false);
-  final Box<int> myRecipeBox;
+  SaveRecipeCubit(
+      this._myRecipesCubit, @Named('my_recipes_box') this._myRecipeBox)
+      : super(false);
+  final MyRecipesCubit _myRecipesCubit;
+  final Box<int> _myRecipeBox;
 
   Future<void> saveRecipe(int recipeId) async {
-    await myRecipeBox.put(recipeId, recipeId);
+    await _myRecipeBox.put(recipeId, recipeId);
     emit(true);
+    await _myRecipesCubit.getMyRecipes();
   }
 
   Future<void> unSaveRecipe(int recipeId) async {
-    await myRecipeBox.delete(recipeId);
+    await _myRecipeBox.delete(recipeId);
     emit(false);
+    await _myRecipesCubit.getMyRecipes();
   }
 
   Future<void> isSaved(int recipeId) async {
-    emit(myRecipeBox.containsKey(recipeId));
+    emit(_myRecipeBox.containsKey(recipeId));
   }
 }
