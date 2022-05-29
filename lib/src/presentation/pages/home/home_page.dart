@@ -161,8 +161,8 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
           ),
           const SizedBox(height: 20),
           RecipeTile(
-            title: randomRecipes.recipes?.first.sourceName ?? '',
-            subtitle: randomRecipes.recipes?.first.title ?? '',
+            title: randomRecipes.recipes?.first.title ?? '',
+            subtitle: randomRecipes.recipes?.first.creditsText ?? '',
             imageUrl: randomRecipes.recipes?.first.image ?? '',
             portions: randomRecipes.recipes?.first.servings ?? 0,
             timeInMinutes: randomRecipes.recipes?.first.readyInMinutes ?? 0,

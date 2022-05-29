@@ -43,11 +43,11 @@ class MyRecipesPage extends StatelessWidget with AutoRouteWrapper {
                   itemCount: state.recipes.length,
                   itemBuilder: (context, index) {
                     return RecipeTile(
-                      title: state.recipes[index].sourceName ?? '',
+                      title: state.recipes[index].title ?? '',
                       timeInMinutes: state.recipes[index].readyInMinutes ?? 0,
                       portions: state.recipes[index].servings ?? 0,
                       imageUrl: state.recipes[index].image ?? '',
-                      subtitle: state.recipes[index].title ?? '',
+                      subtitle: state.recipes[index].creditsText ?? 'Anonymous',
                       onTap: () => context.router.push(
                         RecipeDetailsRoute(
                           recipeId: state.recipes[index].id!,
