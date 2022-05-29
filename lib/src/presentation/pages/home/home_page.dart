@@ -7,6 +7,7 @@ import 'package:just_recipes/src/data/models/recipe.dart';
 import 'package:just_recipes/src/presentation/blocs/home/recipe_of_the_day/recipe_of_the_day_cubit.dart';
 import 'package:just_recipes/src/presentation/blocs/home/recommended_recipe/recommended_recipe_cubit.dart';
 import 'package:just_recipes/src/presentation/pages/home/widgets/recipe_of_the_day.dart';
+import 'package:just_recipes/src/presentation/pages/home/widgets/search_recipe_delegate.dart';
 import 'package:just_recipes/src/presentation/pages/home/widgets/simple_tile.dart';
 import 'package:just_recipes/src/presentation/router/router.gr.dart';
 import 'package:just_recipes/src/presentation/utils/extensions/widget_extension.dart';
@@ -20,8 +21,6 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    context.read<RecipeOfTheDayCubit>().getRecipeOfTheDay();
-    context.read<RecommendedRecipeCubit>().getRecommendedRecipe();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
@@ -31,7 +30,12 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
         actions: [
           IconButton(
             splashRadius: 20,
-            onPressed: () {},
+            onPressed: () {
+              showSearch<void>(
+                context: context,
+                delegate: SearchRecipeDelegate(),
+              );
+            },
             icon: const FaIcon(FontAwesomeIcons.magnifyingGlass, size: 20),
           )
         ],
@@ -190,10 +194,12 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
     return MultiBlocProvider(
       providers: [
         BlocProvider<RecipeOfTheDayCubit>(
-          create: (context) => GetIt.I.get<RecipeOfTheDayCubit>(),
+          create: (context) =>
+              GetIt.I.get<RecipeOfTheDayCubit>()..getRecipeOfTheDay(),
         ),
         BlocProvider<RecommendedRecipeCubit>(
-          create: (context) => GetIt.I.get<RecommendedRecipeCubit>(),
+          create: (context) =>
+              GetIt.I.get<RecommendedRecipeCubit>()..getRecommendedRecipe(),
         ),
       ],
       child: this,

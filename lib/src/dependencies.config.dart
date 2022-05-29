@@ -10,17 +10,19 @@ import 'package:hive_flutter/hive_flutter.dart' as _i3;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:just_recipes/src/data/repository/recipe_repository.dart' as _i7;
 import 'package:just_recipes/src/data/resources/api.dart' as _i6;
-import 'package:just_recipes/src/dependencies.dart' as _i13;
+import 'package:just_recipes/src/dependencies.dart' as _i14;
 import 'package:just_recipes/src/presentation/blocs/home/recipe_of_the_day/recipe_of_the_day_cubit.dart'
-    as _i11;
+    as _i12;
 import 'package:just_recipes/src/presentation/blocs/home/recommended_recipe/recommended_recipe_cubit.dart'
     as _i8;
 import 'package:just_recipes/src/presentation/blocs/my_recipes/my_recipes_cubit.dart'
-    as _i10;
+    as _i11;
 import 'package:just_recipes/src/presentation/blocs/recipe_details/get_recipe/get_recipe_cubit.dart'
-    as _i9;
+    as _i10;
 import 'package:just_recipes/src/presentation/blocs/recipe_details/save_recipe/save_recipe_cubit.dart'
-    as _i12;
+    as _i13;
+import 'package:just_recipes/src/presentation/blocs/search_recipe/search_recipe_cubit.dart'
+    as _i9;
 import 'package:just_recipes/src/presentation/blocs/settings/settings_cubit.dart'
     as _i5; // ignore_for_file: unnecessary_lambdas
 
@@ -49,17 +51,19 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       () => _i7.RecipeRepository(api: get<_i6.Api>()));
   gh.factory<_i8.RecommendedRecipeCubit>(
       () => _i8.RecommendedRecipeCubit(get<_i7.RecipeRepository>()));
-  gh.factory<_i9.GetRecipeCubit>(
-      () => _i9.GetRecipeCubit(get<_i7.RecipeRepository>()));
-  gh.lazySingleton<_i10.MyRecipesCubit>(() => _i10.MyRecipesCubit(
+  gh.factory<_i9.SearchRecipeCubit>(
+      () => _i9.SearchRecipeCubit(get<_i7.RecipeRepository>()));
+  gh.factory<_i10.GetRecipeCubit>(
+      () => _i10.GetRecipeCubit(get<_i7.RecipeRepository>()));
+  gh.lazySingleton<_i11.MyRecipesCubit>(() => _i11.MyRecipesCubit(
       get<_i7.RecipeRepository>(),
       get<_i3.Box<int>>(instanceName: 'my_recipes_box')));
-  gh.factory<_i11.RecipeOfTheDayCubit>(
-      () => _i11.RecipeOfTheDayCubit(get<_i7.RecipeRepository>()));
-  gh.factory<_i12.SaveRecipeCubit>(() => _i12.SaveRecipeCubit(
-      get<_i10.MyRecipesCubit>(),
+  gh.factory<_i12.RecipeOfTheDayCubit>(
+      () => _i12.RecipeOfTheDayCubit(get<_i7.RecipeRepository>()));
+  gh.factory<_i13.SaveRecipeCubit>(() => _i13.SaveRecipeCubit(
+      get<_i11.MyRecipesCubit>(),
       get<_i3.Box<int>>(instanceName: 'my_recipes_box')));
   return get;
 }
 
-class _$RegisterModule extends _i13.RegisterModule {}
+class _$RegisterModule extends _i14.RegisterModule {}
