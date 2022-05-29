@@ -1,4 +1,4 @@
-package com.example.verygoodcore.just_recipes
+package cu.justanothercoder.just_recipes
 
 import io.flutter.embedding.android.FlutterActivity
 
