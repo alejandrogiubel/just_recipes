@@ -38,9 +38,9 @@ class RecipeDetailsPage extends StatelessWidget with AutoRouteWrapper {
                       if (state) {
                         return IconButton(
                           splashRadius: 20,
-                          icon: const Icon(
+                          icon: Icon(
                             FontAwesomeIcons.heart,
-                            color: Colors.red,
+                            color: Theme.of(context).primaryColor,
                           ),
                           onPressed: () {
                             context
