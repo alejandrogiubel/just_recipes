@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_recipes/src/presentation/router/router.gr.dart';
 
-class Root extends StatelessWidget {
-  const Root({super.key});
+class RootPage extends StatelessWidget {
+  const RootPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -181,7 +181,9 @@ class HomePage extends StatelessWidget with AutoRouteWrapper {
             const Duration(milliseconds: 1500),
           ),
           const SizedBox(height: 10),
-          const SimpleOutlinedButton().withDominoDelayedRevealAnimation(
+          const SimpleOutlinedButton(
+            text: 'Browse more recipes',
+          ).withDominoDelayedRevealAnimation(
             const Duration(milliseconds: 1700),
           ),
         ],

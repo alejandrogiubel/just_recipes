@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class SimpleOutlinedButton extends StatelessWidget {
-  const SimpleOutlinedButton({super.key});
+  const SimpleOutlinedButton({
+    this.onPressed,
+    required this.text,
+    super.key,
+  });
+  final String text;
+  final Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +29,8 @@ class SimpleOutlinedButton extends StatelessWidget {
                   ? Colors.black
                   : Colors.white,
             ),
-            child: const Text('Browse more recipes'),
-            onPressed: () {
-              print('Pressed');
-            },
+            onPressed: onPressed,
+            child: Text(text),
           ),
         ),
       ],
