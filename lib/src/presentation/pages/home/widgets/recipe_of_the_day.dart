@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_recipes/src/presentation/style/themes.dart';
-import 'package:just_recipes/src/presentation/utils/extensions/widget_extension.dart';
+import 'package:just_recipes/src/presentation/widgets/simple_network_image.dart';
 
 class RecipeOfTheDay extends StatelessWidget {
   const RecipeOfTheDay({
@@ -62,34 +61,30 @@ class RecipeOfTheDay extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Row(
+                  Wrap(
+                    runSpacing: 15,
+                    spacing: 15,
                     children: [
-                      const FaIcon(FontAwesomeIcons.clock, size: 18),
-                      const SizedBox(width: 10),
-                      Text(
+                      labeledIcon(
+                        context,
+                        FontAwesomeIcons.clock,
                         '$timeInMinutes min',
-                        style: textTheme.subtitle2,
                       ),
-                      const SizedBox(width: 30),
-                      const FaIcon(FontAwesomeIcons.plateWheat, size: 18),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
+                      labeledIcon(
+                        context,
+                        FontAwesomeIcons.plateWheat,
                         '$portions portions',
-                        style: textTheme.subtitle2,
                       ),
                     ],
                   ),
                   if (imageUrl != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: CachedNetworkImage(
+                      child: Center(
+                        child: SimpleNetworkImage(
                           imageUrl: imageUrl!,
                         ),
-                      ).withDominoAnimation,
+                      ),
                     ),
                 ],
               ),
@@ -97,6 +92,20 @@ class RecipeOfTheDay extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Widget labeledIcon(BuildContext context, IconData icon, String label) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FaIcon(icon, size: 18),
+        const SizedBox(width: 5),
+        Text(
+          label,
+          style: Theme.of(context).textTheme.subtitle2,
+        ),
+      ],
     );
   }
 }

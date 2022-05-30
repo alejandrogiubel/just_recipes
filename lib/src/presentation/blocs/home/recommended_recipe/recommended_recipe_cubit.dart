@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_recipes/src/data/models/recipe.dart';
 import 'package:just_recipes/src/data/repository/recipe_repository.dart';

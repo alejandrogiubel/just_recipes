@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:just_recipes/src/presentation/style/themes.dart';
+import 'package:just_recipes/src/presentation/widgets/simple_network_image.dart';
 
 class RecipeTile extends StatelessWidget {
   const RecipeTile({
@@ -43,9 +43,8 @@ class RecipeTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 if (imageUrl != null)
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: CachedNetworkImage(
+                  Center(
+                    child: SimpleNetworkImage(
                       imageUrl: imageUrl!,
                     ),
                   ),
