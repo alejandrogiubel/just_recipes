@@ -30,7 +30,7 @@ void main() {
     });
 
     blocTest<RecipeOfTheDayCubit, RecipeOfTheDayState>(
-      'emits new random recipes',
+      'emit new recipe of the day state',
       build: () => RecipeOfTheDayCubit(_recipeRepository),
       act: (cubit) => cubit.getRecipeOfTheDay(),
       expect: () => [

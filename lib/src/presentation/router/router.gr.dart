@@ -15,7 +15,7 @@ import 'package:flutter/material.dart' as _i9;
 
 import '../pages/cook_now/cook_now_page.dart' as _i6;
 import '../pages/home/home_page.dart' as _i4;
-import '../pages/intro_page.dart' as _i3;
+import '../pages/intro/intro_page.dart' as _i3;
 import '../pages/my_recipes/my_recipes_page.dart' as _i5;
 import '../pages/recipe_details/recipe_details_page.dart' as _i2;
 import '../pages/root/root_page.dart' as _i1;

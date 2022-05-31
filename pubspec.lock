@@ -35,7 +35,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   async:
     dependency: transitive
     description:
@@ -340,6 +340,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_native_splash:
+    dependency: "direct dev"
+    description:
+      name: flutter_native_splash
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.2"
   flutter_neumorphic:
     dependency: "direct main"
     description:
@@ -363,6 +370,11 @@ packages:
     version: "1.1.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -506,6 +518,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.2.0"
+  lint:
+    dependency: transitive
+    description:
+      name: lint
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.8.2"
   logger:
     dependency: "direct main"
     description:
@@ -1014,7 +1033,7 @@ packages:
       name: yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.1.1"
 sdks:
   dart: ">=2.17.0 <3.0.0"
   flutter: ">=3.0.0"

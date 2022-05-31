@@ -12,16 +12,16 @@ part 'my_recipes_state.dart';
 class MyRecipesCubit extends Cubit<MyRecipesState> {
   MyRecipesCubit(
     this._recipeRepository,
-    @Named('my_recipes_box') this._myRecipeBox,
+    @Named('my_recipes_box') this.myRecipeBox,
   ) : super(MyRecipesInitialState());
   final RecipeRepository _recipeRepository;
-  final Box<int> _myRecipeBox;
+  final Box<int> myRecipeBox;
 
   Future<void> getMyRecipes() async {
     emit(MyRecipesLoadingState());
     try {
       final ids = StringBuffer();
-      for (final element in _myRecipeBox.values) {
+      for (final element in myRecipeBox.values) {
         ids.write(',$element');
       }
       final recipes =

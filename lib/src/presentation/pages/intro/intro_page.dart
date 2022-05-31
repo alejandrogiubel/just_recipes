@@ -27,7 +27,7 @@ class IntroPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SvgPicture.asset(
-                  'assets/chef.svg',
+                  'assets/icons/chef.svg',
                   height: 200,
                   color: isDarkMode ? Colors.white : Colors.black,
                 ).withDominoAnimation,

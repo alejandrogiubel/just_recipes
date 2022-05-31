@@ -4,7 +4,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:just_recipes/src/presentation/pages/cook_now/cook_now_page.dart';
 import 'package:just_recipes/src/presentation/pages/home/home_page.dart';
-import 'package:just_recipes/src/presentation/pages/intro_page.dart';
+import 'package:just_recipes/src/presentation/pages/intro/intro_page.dart';
 import 'package:just_recipes/src/presentation/pages/my_recipes/my_recipes_page.dart';
 import 'package:just_recipes/src/presentation/pages/recipe_details/recipe_details_page.dart';
 import 'package:just_recipes/src/presentation/pages/root/root_page.dart';

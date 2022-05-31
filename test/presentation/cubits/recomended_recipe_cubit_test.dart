@@ -30,7 +30,7 @@ void main() {
     });
 
     blocTest<RecommendedRecipeCubit, RecommendedRecipeState>(
-      'emits new recommended recipes',
+      'emits new recommended recipes state',
       build: () => RecommendedRecipeCubit(_recipeRepository),
       act: (cubit) => cubit.getRecommendedRecipe(),
       expect: () => [
